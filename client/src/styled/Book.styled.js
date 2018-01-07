@@ -38,6 +38,7 @@ export const Author = styled.p`
 
 export const Image = styled.img`
   width: 200px;
+  height: 350px;
   grid-area: Image;
   justify-self: center;
 `;

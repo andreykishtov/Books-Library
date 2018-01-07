@@ -27,12 +27,28 @@ class EditForm extends Component {
     return true;
   };
 
+  correctString(string) {
+    return string
+      .split(' ')
+      .map(word => this.capitalize(word))
+      .join(' ');
+  }
+
+  capitalize(string) {
+    let simpleString = string.replace(/[^A-Za-z0-9]/g, '');
+    return simpleString.charAt(0).toUpperCase() + simpleString.slice(1).toLowerCase();
+  }
+
   handleSubmit = event => {
     event.preventDefault();
     let { title, author, publishedDate } = this.state;
     if (!this.checkData(title, author, publishedDate)) {
       return;
     }
+    title = this.correctString(title);
+    author = this.correctString(author);
+    publishedDate = this.correctString(publishedDate);
+
     this.props.onEdit(this.props.book.id, title, author, publishedDate);
     this.props.toggleModal();
   };
