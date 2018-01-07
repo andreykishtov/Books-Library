@@ -3,10 +3,10 @@ import { Wrapper, Title, PublishDate, Author, Image } from '../styled/Book.style
 
 const Book = ({ book }) => (
   <Wrapper key={book.id}>
-    <Title>{book.title}</Title>
-    <Image src={book.image} alt="book" />
-    <PublishDate>{book.publishedDate}</PublishDate>
-    <Author>{book.author}</Author>
+    <Title>{book.volumeInfo.title}</Title>
+    <Image src={book.volumeInfo.imageLinks.thumbnail} alt="book" />
+    <PublishDate>{book.volumeInfo.publishedDate}</PublishDate>
+    <Author>{book.volumeInfo.authors[0]}</Author>
   </Wrapper>
 );
 
