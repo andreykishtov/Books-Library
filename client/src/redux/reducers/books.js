@@ -1,4 +1,4 @@
-import { GET_BOOKS, GET_BOOKS_SUCCESS, GET_BOOKS_FAILURE } from '../constants/books';
+import { GET_BOOKS, DELETE_BOOK, EDIT_BOOK, GET_BOOKS_SUCCESS, GET_BOOKS_FAILURE } from '../constants/books';
 
 const initialState = {
   books: [],
@@ -10,8 +10,30 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case GET_BOOKS:
       return { ...state, getBooksPending: true };
+    case DELETE_BOOK:
+      return {
+        ...state,
+        books: state.books.filter(book => book.id !== action.payload.id)
+      };
+    case EDIT_BOOK:
+      return {
+        ...state,
+        books: state.books.map(
+          book =>
+            book.id === action.payload.id
+              ? {
+                  ...book,
+                  volumeInfo: {
+                    ...book.volumeInfo,
+                    title: action.payload.title,
+                    publishedDate: action.payload.publishedDate,
+                    authors: [action.payload.author]
+                  }
+                }
+              : { ...book }
+        )
+      };
     case GET_BOOKS_SUCCESS:
-      console.log(action.payload.books);
       return {
         ...state,
         books: action.payload.books,
