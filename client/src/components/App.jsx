@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { booksRequest } from '../redux/actions/book';
 import Book from './Book';
 
 const Wrapper = styled.div`
@@ -15,19 +16,7 @@ const Wrapper = styled.div`
 `;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { books: [] };
-  }
-
-  componentWillMount = async () => {
-    try {
-      const response = await axios.get('http://localhost:4000/books');
-      this.setState({ books: response.data[0].items });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  componentWillMount = () => this.props.dispatch(booksRequest());
 
   render() {
     const { books } = this.state;
@@ -35,4 +24,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
