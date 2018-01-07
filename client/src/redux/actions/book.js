@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-import { GET_BOOKS, EDIT_BOOK, GET_BOOKS_SUCCESS, DELETE_BOOK, GET_BOOKS_FAILURE } from '../constants/books';
+import {
+  GET_BOOKS,
+  EDIT_BOOK,
+  ADD_BOOK,
+  GET_BOOKS_SUCCESS,
+  DELETE_BOOK,
+  GET_BOOKS_FAILURE
+} from '../constants/books';
 
 export const getBooks = () => ({ type: GET_BOOKS });
 export const editBook = (id, title, author, publishedDate) => ({
@@ -8,6 +15,7 @@ export const editBook = (id, title, author, publishedDate) => ({
   payload: { id, title, author, publishedDate }
 });
 export const deleteBook = id => ({ type: DELETE_BOOK, payload: { id } });
+export const addBook = book => ({ type: ADD_BOOK, payload: { book } });
 export const getBooksSuccess = books => ({ type: GET_BOOKS_SUCCESS, payload: { books } });
 export const getBooksFailure = error => ({
   type: GET_BOOKS_FAILURE,

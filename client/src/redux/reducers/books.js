@@ -1,4 +1,11 @@
-import { GET_BOOKS, DELETE_BOOK, EDIT_BOOK, GET_BOOKS_SUCCESS, GET_BOOKS_FAILURE } from '../constants/books';
+import {
+  GET_BOOKS,
+  DELETE_BOOK,
+  ADD_BOOK,
+  EDIT_BOOK,
+  GET_BOOKS_SUCCESS,
+  GET_BOOKS_FAILURE
+} from '../constants/books';
 
 const initialState = {
   books: [],
@@ -14,6 +21,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         books: state.books.filter(book => book.id !== action.payload.id)
+      };
+    case ADD_BOOK:
+      return {
+        ...state,
+        books: state.books.push(action.payload.book)
       };
     case EDIT_BOOK:
       return {
