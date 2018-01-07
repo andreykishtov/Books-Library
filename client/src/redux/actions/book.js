@@ -13,9 +13,9 @@ export const booksRequest = (url = 'http://localhost:4000/books') => async dispa
   dispatch(getBooks());
 
   try {
-    const books = await axios.get(url);
-    dispatch(getBooksSuccess(books));
-  } catch ({ response: { status } }) {
-    dispatch(getBooksFailure(status));
+    const res = await axios.get(url);
+    dispatch(getBooksSuccess(res.data[0].items));
+  } catch (error) {
+    dispatch(getBooksFailure(error));
   }
 };

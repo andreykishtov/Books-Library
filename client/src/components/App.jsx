@@ -19,9 +19,15 @@ class App extends Component {
   componentWillMount = () => this.props.dispatch(booksRequest());
 
   render() {
-    const { books } = this.state;
-    return books.length && <Wrapper>{books.map(book => <Book key={book.id} book={book} />)}</Wrapper>;
+    const { books } = this.props;
+    return books ? (
+      books.length > 1 && <Wrapper>{books.map(book => <Book key={book.id} book={book} />)}</Wrapper>
+    ) : (
+      <div>loading</div>
+    );
   }
 }
 
-export default connect()(App);
+const mapStateToProps = state => state.books;
+
+export default connect(mapStateToProps)(App);

@@ -11,6 +11,7 @@ export default (state = initialState, action) => {
     case GET_BOOKS:
       return { ...state, getBooksPending: true };
     case GET_BOOKS_SUCCESS:
+      console.log(action.payload.books);
       return {
         ...state,
         books: action.payload.books,
