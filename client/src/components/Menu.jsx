@@ -2,7 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 import AddBook from './AddBook';
-import Modal from './Modal';
+import Modal from 'react-modal';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    margin: '0',
+    transform: 'translate(-50%, -50%)',
+    background: '#27282a'
+  }
+};
 
 const AddButton = styled.button`
   background: #1d1e20;
@@ -36,7 +48,7 @@ class Menu extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Modal isOpen={this.state.AddPopup}>
+        <Modal style={customStyles} isOpen={this.state.AddPopup}>
           <AddBook toggleModal={this.toggleAddPopup} />
         </Modal>
         <Title>Books Library</Title>

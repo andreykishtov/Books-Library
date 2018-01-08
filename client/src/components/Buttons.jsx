@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
-import Modal from './Modal';
+import Modal from 'react-modal';
 import EditForm from './EditForm';
 import DeleteBook from './DeleteBook';
 
 import { Wrapper, EditButton, DeleteButton } from '../styled/Buttons.styled';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    margin: '0',
+    transform: 'translate(-50%, -50%)',
+    background: '#27282a'
+  }
+};
 
 class Buttons extends Component {
   constructor(props) {
@@ -21,10 +33,10 @@ class Buttons extends Component {
       <Wrapper>
         <EditButton onClick={() => this.toggleEditModal()}>Edit</EditButton>
         <DeleteButton onClick={() => this.toggleDeletePopup()}>Delete</DeleteButton>
-        <Modal isOpen={this.state.editModalState}>
+        <Modal style={customStyles} isOpen={this.state.editModalState}>
           <EditForm toggleModal={this.toggleEditModal} book={book} />
         </Modal>
-        <Modal isOpen={this.state.deletePopup}>
+        <Modal style={customStyles} isOpen={this.state.deletePopup}>
           <DeleteBook id={book.id} toggleDeletePopup={this.toggleDeletePopup} />
         </Modal>
       </Wrapper>
