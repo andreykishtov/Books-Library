@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { addBook } from '../redux/actions/book';
 
 import { Form, Header, InputBox, InputLabel, Save, Cancel } from '../styled/AddBook.styled';
 
+const idCounter = 0;
+
 class AddBook extends Component {
   constructor(props) {
     super(props);
-    this.state = { title: '', author: '', publishedDate: '', ImageURL: '' };
+    this.state = { title: '', author: '', publishedDate: '', imageURL: '' };
   }
 
   handleChange = event => this.setState({ [event.target.name]: event.target.value });
 
   checkForString = data => typeof data !== 'string';
 
-  checkData = (title, author, publishedDate) => {
+  checkData = (title, author, publishedDate, imageURL) => {
     if (this.checkForString(title)) {
       alert('title Must Be a string');
       return false;
@@ -23,6 +24,11 @@ class AddBook extends Component {
 
     if (this.checkForString(author)) {
       alert('author Must Be a string');
+      return false;
+    }
+
+    if (this.checkForString(imageURL)) {
+      alert('imageURL Must Be a string');
       return false;
     }
     return true;
@@ -42,15 +48,26 @@ class AddBook extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    let { title, author, publishedDate } = this.state;
-    if (!this.checkData(title, author, publishedDate)) {
+    let { title, author, publishedDate, imageURL } = this.state;
+    if (!this.checkData(title, author, publishedDate, imageURL)) {
       return;
     }
     title = this.correctString(title);
     author = this.correctString(author);
     publishedDate = this.correctString(publishedDate);
 
-    this.props.onAdd(title, author, publishedDate);
+    this.props.onAdd({
+      id: `mATF${idCounter}eVI${idCounter}IUC`,
+      volumeInfo: {
+        imageLinks: {
+          thumbnail: imageURL
+        },
+        title: title,
+        publishedDate: publishedDate,
+        authors: author
+      }
+    });
+
     this.props.toggleModal();
   };
 
@@ -97,7 +114,7 @@ class AddBook extends Component {
             placeholder="please enter Date"
             name="ImageURL"
             type="text"
-            title={this.state.ImageURL}
+            title={this.state.imageURL}
             onChange={this.handleChange}
             required
           />
@@ -111,8 +128,8 @@ class AddBook extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAdd: (title, author, publishedDate) => {
-      dispatch(addBook({ title, author, publishedDate }));
+    onAdd: book => {
+      dispatch(addBook(book));
     }
   };
 };

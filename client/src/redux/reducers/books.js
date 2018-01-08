@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
     case ADD_BOOK:
       return {
         ...state,
-        books: state.books.push(action.payload.book)
+        books: [...state.books, action.payload.book]
       };
     case EDIT_BOOK:
       return {

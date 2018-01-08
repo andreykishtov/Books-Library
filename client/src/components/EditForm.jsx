@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { editBook } from '../redux/actions/book';
 import { Form, Header, InputBox, InputLabel, Save, Cancel } from '../styled/EditForm.styled';
+import Modal from './Modal';
 
 class EditForm extends Component {
   constructor(props) {
@@ -46,6 +47,10 @@ class EditForm extends Component {
       return;
     }
     title = this.correctString(title);
+    if (this.checkTitle(title)) {
+      return;
+    }
+
     author = this.correctString(author);
     publishedDate = this.correctString(publishedDate);
 
@@ -53,6 +58,14 @@ class EditForm extends Component {
     this.props.toggleModal();
   };
 
+  checkTitle(title) {
+    const TitleExists = this.state.books.filter(book => book.title === title);
+    if (TitleExists.length) {
+      // this.state.errorMessage(`This Title name: "${title}" already exists`);
+      return true;
+    }
+    return false;
+  }
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -97,6 +110,10 @@ class EditForm extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return state.books;
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     onEdit: (id, title, author, publishedDate) => {
@@ -105,4 +122,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(EditForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditForm);

@@ -3,7 +3,7 @@ import Modal from './Modal';
 import EditForm from './EditForm';
 import DeleteBook from './DeleteBook';
 
-import { Wrapper, EditButton, DeleteButton, AddButton } from '../styled/Buttons.styled';
+import { Wrapper, EditButton, DeleteButton } from '../styled/Buttons.styled';
 
 class Buttons extends Component {
   constructor(props) {

@@ -37,7 +37,7 @@ class Menu extends React.Component {
     return (
       <Wrapper>
         <Modal isOpen={this.state.AddPopup}>
-          <AddBook toggleAddPopup={this.toggleAddPopup} />
+          <AddBook toggleModal={this.toggleAddPopup} />
         </Modal>
         <Title>Books Library</Title>
         <AddButton onClick={() => this.toggleAddPopup()}>Add</AddButton>
