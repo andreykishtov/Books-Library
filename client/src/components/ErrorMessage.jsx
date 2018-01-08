@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { hideError } from '../redux/actions/modal';
-import styled from 'styled-components';
+
+import { Button, Title, Wrapper } from '../styled/ErrorMessage.styled';
 
 const customStyles = {
   content: {
@@ -15,23 +16,6 @@ const customStyles = {
     background: '#27282a'
   }
 };
-
-const Title = styled.h2`
-  color: white;
-`;
-
-const Button = styled.button`
-  background: #1d1e20;
-  color: white;
-  border: 1px solid #2c2d2f;
-  padding: 10px 20px;
-`;
-
-const Wrapper = styled.div`
-  background: #27282a;
-  text-align: center;
-  padding: 20px;
-`;
 
 const ErrorMessage = ({ message, isOpen, dispatch }) => {
   return (
