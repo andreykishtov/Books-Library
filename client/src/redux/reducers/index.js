@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import books from './books';
+import modal from './modal';
 
-const todoApp = combineReducers({
-  books
+const bookApp = combineReducers({
+  books,
+  modal
 });
 
-export default todoApp;
+export default bookApp;

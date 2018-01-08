@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { booksRequest } from '../redux/actions/book';
 import Menu from './Menu';
 import Book from './Book';
+import Modals from './ErrorMessage';
 
 const BooksWrapper = styled.div`
   margin: 0 auto;
@@ -27,6 +28,7 @@ class App extends Component {
         <div>
           <Menu />
           <BooksWrapper>{books.map(book => <Book key={book.id} book={book} />)}</BooksWrapper>
+          <Modals />
         </div>
       )
     ) : (

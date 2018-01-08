@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { editBook } from '../redux/actions/book';
 import { Form, Header, InputBox, InputLabel, Save, Cancel } from '../styled/EditForm.styled';
-import Modal from './Modal';
+import { showError } from '../redux/actions/modal';
 
 class EditForm extends Component {
   constructor(props) {
@@ -61,7 +61,7 @@ class EditForm extends Component {
   checkTitle(title) {
     const TitleExists = this.state.books.filter(book => book.title === title);
     if (TitleExists.length) {
-      // this.state.errorMessage(`This Title name: "${title}" already exists`);
+      this.props.errorMessage(`This Title name: "${title}" already exists`);
       return true;
     }
     return false;
@@ -69,6 +69,9 @@ class EditForm extends Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
+        <button onClick={() => this.props.errorMessage(`This Title name: "sdsd" already exists`)}>
+          test
+        </button>
         <Header>Edit Book</Header>
         <InputLabel grid-area="Title">
           Title:
@@ -118,6 +121,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onEdit: (id, title, author, publishedDate) => {
       dispatch(editBook(id, title, author, publishedDate));
+    },
+    errorMessage: message => {
+      dispatch(showError(message));
     }
   };
 };
