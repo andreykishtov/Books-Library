@@ -69,7 +69,6 @@ class AddBook extends Component {
 
     title = this.correctString(title);
     author = this.correctString(author);
-    publishedDate = this.correctString(publishedDate);
 
     this.props.onAdd({
       id: `mATF${idCounter}eVI${idCounter}IUC`,
@@ -117,7 +116,7 @@ class AddBook extends Component {
           <InputBox
             placeholder="please enter Date"
             name="publishedDate"
-            type="text"
+            type="date"
             title={this.state.publishedDate}
             onChange={this.handleChange}
             required
