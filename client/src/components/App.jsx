@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+
 import { booksRequest } from '../redux/actions/book';
+import Menu from './Menu';
 import Book from './Book';
 
-const Wrapper = styled.div`
+const BooksWrapper = styled.div`
   margin: 0 auto;
   justify-content: center;
   width: 1300px;
@@ -21,7 +23,12 @@ class App extends Component {
   render() {
     const { books } = this.props;
     return books ? (
-      books.length > 1 && <Wrapper>{books.map(book => <Book key={book.id} book={book} />)}</Wrapper>
+      books.length > 1 && (
+        <div>
+          <Menu />
+          <BooksWrapper>{books.map(book => <Book key={book.id} book={book} />)}</BooksWrapper>
+        </div>
+      )
     ) : (
       <div>loading</div>
     );
