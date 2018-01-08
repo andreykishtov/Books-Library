@@ -8,7 +8,12 @@ import { showError } from '../redux/actions/modal';
 class EditForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { title: '', author: '', publishedDate: '' };
+    let { title, authors, publishedDate } = this.props.book.volumeInfo;
+    this.state = {
+      title: title,
+      author: authors[0],
+      publishedDate: publishedDate
+    };
   }
 
   handleChange = event => this.setState({ [event.target.name]: event.target.value });
@@ -59,7 +64,9 @@ class EditForm extends Component {
   };
 
   checkTitle(title) {
-    const TitleExists = this.props.books.filter(book => book.volumeInfo.title === title);
+    const TitleExists = this.props.books.filter(
+      book => book.volumeInfo.title === title && this.props.book.id !== book.id
+    );
     if (TitleExists.length) {
       this.props.errorMessage(`This Title name: "${title}" already exists`);
       return true;
@@ -67,6 +74,7 @@ class EditForm extends Component {
     return false;
   }
   render() {
+    const { title, authors, publishedDate } = this.props.book.volumeInfo;
     return (
       <Form onSubmit={this.handleSubmit}>
         <Header>Edit Book</Header>
@@ -76,6 +84,7 @@ class EditForm extends Component {
             placeholder="please enter Title"
             name="title"
             type="text"
+            defaultValue={title}
             title={this.state.title}
             onChange={this.handleChange}
             required
@@ -87,6 +96,7 @@ class EditForm extends Component {
             placeholder="please enter Author"
             name="author"
             type="text"
+            defaultValue={authors[0]}
             title={this.state.author}
             onChange={this.handleChange}
             required
@@ -98,6 +108,7 @@ class EditForm extends Component {
             placeholder="please enter Date"
             name="publishedDate"
             type="date"
+            defaultValue={publishedDate}
             title={this.state.publishedDate}
             onChange={this.handleChange}
             required

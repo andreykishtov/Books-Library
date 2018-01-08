@@ -125,7 +125,7 @@ class AddBook extends Component {
         <InputLabel grid-area="ImageURL">
           ImageURL:
           <InputBox
-            placeholder="please enter Date"
+            placeholder="please enter ImageURL"
             name="ImageURL"
             type="text"
             title={this.state.imageURL}
