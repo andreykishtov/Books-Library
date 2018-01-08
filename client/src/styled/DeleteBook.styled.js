@@ -10,7 +10,7 @@ export const Button = styled.button`
   color: white;
   padding: 10px;
   margin-right: 10px;
-  border: 1px solid lightgrey;
+  border: 1px solid #2c2d2f;
 `;
 
 export const Title = styled.h3`
@@ -18,5 +18,5 @@ export const Title = styled.h3`
   padding: 30px 50px;
   text-align: center;
   color: white;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #2c2d2f;
 `;

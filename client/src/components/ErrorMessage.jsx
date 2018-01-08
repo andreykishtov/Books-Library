@@ -2,12 +2,32 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Modal from './Modal';
 import { hideError } from '../redux/actions/modal';
+import styled from 'styled-components';
+
+const Title = styled.h2`
+  color: white;
+`;
+
+const Button = styled.button`
+  background: #1d1e20;
+  color: white;
+  border: 1px solid #2c2d2f;
+  padding: 10px 20px;
+`;
+
+const Wrapper = styled.div`
+  background: #27282a;
+  text-align: center;
+  padding: 20px;
+`;
 
 const ErrorMessage = ({ message, isOpen, dispatch }) => {
   return (
-    <Modal isOpen={isOpen}>
-      <h2>Error {message}</h2>
-      <button onClick={() => dispatch(hideError())}>Close</button>
+    <Modal zIndex={200} isOpen={isOpen}>
+      <Wrapper>
+        <Title>Error {message}</Title>
+        <Button onClick={() => dispatch(hideError())}>Ok</Button>
+      </Wrapper>
     </Modal>
   );
 };

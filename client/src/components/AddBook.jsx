@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addBook } from '../redux/actions/book';
+import { showError } from '../redux/actions/modal';
 
 import { Form, Header, InputBox, InputLabel, Save, Cancel } from '../styled/AddBook.styled';
 
@@ -41,6 +42,15 @@ class AddBook extends Component {
       .join(' ');
   }
 
+  checkTitle(title) {
+    const TitleExists = this.props.books.filter(book => book.volumeInfo.title === title);
+    if (TitleExists.length) {
+      this.props.errorMessage(`This Title name: "${title}" already exists`);
+      return true;
+    }
+    return false;
+  }
+
   capitalize(string) {
     let simpleString = string.replace(/[^A-Za-z0-9]/g, '');
     return simpleString.charAt(0).toUpperCase() + simpleString.slice(1).toLowerCase();
@@ -52,6 +62,11 @@ class AddBook extends Component {
     if (!this.checkData(title, author, publishedDate, imageURL)) {
       return;
     }
+
+    if (this.checkTitle(title)) {
+      return;
+    }
+
     title = this.correctString(title);
     author = this.correctString(author);
     publishedDate = this.correctString(publishedDate);
@@ -108,7 +123,7 @@ class AddBook extends Component {
             required
           />
         </InputLabel>
-        <InputLabel grid-area="publishedDate">
+        <InputLabel grid-area="ImageURL">
           ImageURL:
           <InputBox
             placeholder="please enter Date"
@@ -126,12 +141,19 @@ class AddBook extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return state.books;
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     onAdd: book => {
       dispatch(addBook(book));
+    },
+    errorMessage: message => {
+      dispatch(showError(message));
     }
   };
 };
 
-export default connect(null, mapDispatchToProps)(AddBook);
+export default connect(mapStateToProps, mapDispatchToProps)(AddBook);

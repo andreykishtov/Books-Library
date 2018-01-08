@@ -46,10 +46,11 @@ class EditForm extends Component {
     if (!this.checkData(title, author, publishedDate)) {
       return;
     }
-    title = this.correctString(title);
+
     if (this.checkTitle(title)) {
       return;
     }
+    title = this.correctString(title);
 
     author = this.correctString(author);
     publishedDate = this.correctString(publishedDate);
@@ -59,7 +60,7 @@ class EditForm extends Component {
   };
 
   checkTitle(title) {
-    const TitleExists = this.state.books.filter(book => book.title === title);
+    const TitleExists = this.props.books.filter(book => book.volumeInfo.title === title);
     if (TitleExists.length) {
       this.props.errorMessage(`This Title name: "${title}" already exists`);
       return true;
@@ -69,9 +70,6 @@ class EditForm extends Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <button onClick={() => this.props.errorMessage(`This Title name: "sdsd" already exists`)}>
-          test
-        </button>
         <Header>Edit Book</Header>
         <InputLabel grid-area="Title">
           Title:

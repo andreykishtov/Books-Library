@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 150;
+  z-index: ${(props = '150') => props.zIndex};
 `;
 
 export const BackDrop = styled.div`

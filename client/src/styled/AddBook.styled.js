@@ -4,16 +4,18 @@ export const Form = styled.form`
   padding: 10px;
   display: grid;
   background: #27282a;
-  justify-items: center;
+  justify-items: flex-end;
   grid-template-areas:
-    'Header Header Header'
-    'Title Author publishedDate'
-    'Save . Cancel';
+    'Header  Header'
+    'Title Author'
+    'publishedDate ImageURL'
+    'Save  Cancel';
 `;
 
 export const Header = styled.h2`
   grid-area: Header;
   color: white;
+  justify-self: center;
 `;
 
 export const InputBox = styled.input`
