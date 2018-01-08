@@ -20,7 +20,7 @@ const BooksWrapper = styled.div`
 
 class App extends Component {
   componentWillMount = () =>
-    this.props.dispatch(booksRequest('http://ec2-18-217-102-218.us-east-2.compute.amazonaws.com:4000'));
+    this.props.dispatch(booksRequest('http://ec2-18-217-102-218.us-east-2.compute.amazonaws.com:4000/books'));
 
   render() {
     const { books } = this.props;

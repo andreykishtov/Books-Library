@@ -22,7 +22,9 @@ export const getBooksFailure = error => ({
   payload: { error }
 });
 
-export const booksRequest = (url = 'http://localhost:4000/books') => async dispatch => {
+export const booksRequest = (
+  url = 'http://ec2-18-217-102-218.us-east-2.compute.amazonaws.com:4000/books'
+) => async dispatch => {
   dispatch(getBooks());
 
   try {
