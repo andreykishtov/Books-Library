@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { editBook } from '../redux/actions/book';
-import { Form, Header, InputBox, InputLabel, Save, Cancel } from '../styled/EditForm.styled';
+import { Form, Header, InputBox, InputLabel, Save, Cancel, Validator } from '../styled/EditForm.styled';
 import { showError } from '../redux/actions/modal';
 
 class EditForm extends Component {
@@ -89,6 +89,7 @@ class EditForm extends Component {
             onChange={this.handleChange}
             required
           />
+          {!this.state.title && <Validator>Title can`t be empty</Validator>}
         </InputLabel>
         <InputLabel grid-area="Author">
           Author:
@@ -101,6 +102,7 @@ class EditForm extends Component {
             onChange={this.handleChange}
             required
           />
+          {!this.state.author && <Validator>Author can`t be empty</Validator>}
         </InputLabel>
         <InputLabel grid-area="publishedDate">
           Date:
@@ -113,6 +115,7 @@ class EditForm extends Component {
             onChange={this.handleChange}
             required
           />
+          {!this.state.publishedDate && <Validator>Date can`t be empty</Validator>}
         </InputLabel>
         <Save type="submit" title="Save" />
         <Cancel onClick={this.props.toggleModal}>Cancel</Cancel>

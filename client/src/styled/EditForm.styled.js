@@ -44,3 +44,7 @@ export const Cancel = styled.button`
   border: 1px solid #2c2d2f;
   padding: 10px 20px;
 `;
+
+export const Validator = styled.p`
+  color: red;
+`;
