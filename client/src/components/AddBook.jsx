@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { addBook } from '../redux/actions/book';
 import { showError } from '../redux/actions/modal';
-
 import { Form, Header, InputBox, InputLabel, Save, Cancel } from '../styled/AddBook.styled';
 
 const idCounter = 0;
@@ -18,21 +18,15 @@ class AddBook extends Component {
   checkForString = data => typeof data !== 'string';
 
   checkData = (title, author, publishedDate, imageURL) => {
-    if (this.checkForString(title)) {
-      alert('title Must Be a string');
-      return false;
-    }
-
-    if (this.checkForString(author)) {
-      alert('author Must Be a string');
-      return false;
-    }
-
-    if (this.checkForString(imageURL)) {
-      alert('imageURL Must Be a string');
-      return false;
-    }
-    return true;
+    return (
+      [title, author, imageURL].filter(item => {
+        if (this.checkForString(item)) {
+          this.props.errorMessage(`${item} - Must Be a string`);
+          return false;
+        }
+        return true;
+      }).length === 3
+    );
   };
 
   correctString(string) {

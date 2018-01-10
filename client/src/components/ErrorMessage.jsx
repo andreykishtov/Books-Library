@@ -4,18 +4,7 @@ import Modal from 'react-modal';
 import { hideError } from '../redux/actions/modal';
 
 import { Button, Title, Wrapper } from '../styled/ErrorMessage.styled';
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    margin: '0',
-    transform: 'translate(-50%, -50%)',
-    background: '#27282a'
-  }
-};
+import { customStyles } from '../customStyle/modalStyle';
 
 const ErrorMessage = ({ message, isOpen, dispatch }) => {
   return (
