@@ -86,53 +86,29 @@ class AddBook extends Component {
   };
 
   render() {
+    const InputArray = [
+      { title: 'Title:', state: 'title', type: 'text' },
+      { title: 'Author:', state: 'author', type: 'text' },
+      { title: 'Date:', state: 'publishedDate', type: 'date' },
+      { title: 'ImageURL:', state: 'imageURL', type: 'text' }
+    ];
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <Header>Add Book</Header>
-        <InputLabel grid-area="Title">
-          Title:
-          <InputBox
-            placeholder="please enter Title"
-            name="title"
-            type="text"
-            title={this.state.title}
-            onChange={this.handleChange}
-            required
-          />
-        </InputLabel>
-        <InputLabel grid-area="Author">
-          Author:
-          <InputBox
-            placeholder="please enter Author"
-            name="author"
-            type="text"
-            title={this.state.author}
-            onChange={this.handleChange}
-            required
-          />
-        </InputLabel>
-        <InputLabel grid-area="publishedDate">
-          Date:
-          <InputBox
-            placeholder="please enter Date"
-            name="publishedDate"
-            type="date"
-            title={this.state.publishedDate}
-            onChange={this.handleChange}
-            required
-          />
-        </InputLabel>
-        <InputLabel grid-area="ImageURL">
-          ImageURL:
-          <InputBox
-            placeholder="please enter ImageURL"
-            name="ImageURL"
-            type="text"
-            title={this.state.imageURL}
-            onChange={this.handleChange}
-            required
-          />
-        </InputLabel>
+        {InputArray.map(item => (
+          <InputLabel grid-area={item.title}>
+            {item.title}
+            <InputBox
+              placeholder={`please enter ${item.title}`}
+              name={item.title}
+              type={item.type}
+              title={this.state[item.state]}
+              onChange={this.handleChange}
+              required
+            />
+          </InputLabel>
+        ))}
         <Save type="submit" title="Save" />
         <Cancel onClick={this.props.toggleModal}>Cancel</Cancel>
       </Form>

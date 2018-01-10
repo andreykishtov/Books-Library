@@ -75,48 +75,31 @@ class EditForm extends Component {
   }
   render() {
     const { title, authors, publishedDate } = this.props.book.volumeInfo;
+
+    const InputArray = [
+      { title: 'Title:', state: 'title', default: title, type: 'text' },
+      { title: 'Author:', state: 'author', default: authors[0], type: 'text' },
+      { title: 'Date:', state: 'publishedDate', default: publishedDate, type: 'date' }
+    ];
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <Header>Edit Book</Header>
-        <InputLabel grid-area="Title">
-          Title:
-          <InputBox
-            placeholder="please enter Title"
-            name="title"
-            type="text"
-            defaultValue={title}
-            title={this.state.title}
-            onChange={this.handleChange}
-            required
-          />
-          {!this.state.title && <Validator>Title can`t be empty</Validator>}
-        </InputLabel>
-        <InputLabel grid-area="Author">
-          Author:
-          <InputBox
-            placeholder="please enter Author"
-            name="author"
-            type="text"
-            defaultValue={authors[0]}
-            title={this.state.author}
-            onChange={this.handleChange}
-            required
-          />
-          {!this.state.author && <Validator>Author can`t be empty</Validator>}
-        </InputLabel>
-        <InputLabel grid-area="publishedDate">
-          Date:
-          <InputBox
-            placeholder="please enter Date"
-            name="publishedDate"
-            type="date"
-            defaultValue={publishedDate}
-            title={this.state.publishedDate}
-            onChange={this.handleChange}
-            required
-          />
-          {!this.state.publishedDate && <Validator>Date can`t be empty</Validator>}
-        </InputLabel>
+        {InputArray.map(item => (
+          <InputLabel grid-area={item.title}>
+            {item.title}
+            <InputBox
+              placeholder={`please enter ${item.title}`}
+              name={item.title}
+              type={item.type}
+              defaultValue={item.default}
+              title={this.state[item.state]}
+              onChange={this.handleChange}
+              required
+            />
+            {!this.state[item.state] && <Validator>{item.title} can`t be empty</Validator>}
+          </InputLabel>
+        ))}
         <Save type="submit" title="Save" />
         <Cancel onClick={this.props.toggleModal}>Cancel</Cancel>
       </Form>
