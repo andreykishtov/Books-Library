@@ -16,7 +16,7 @@ export const Title = styled.h1`
 export const Wrapper = styled.div`
   text-align: center;
   padding: 20px 0;
-  width: 1300px;
+  width: 1380px;
   margin: 0 auto;
-  background: #1d1e20;
+  background: #222325;
 `;

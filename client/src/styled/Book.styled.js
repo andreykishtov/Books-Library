@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   width: 200px;
   display: grid;
-  padding-bottom: 10px;
+  padding: 10px;
   background: #27282a;
   justify-items: center;
   grid-template-areas: 'Image Image' 'Title Title' ' Author Author' 'PublishDate PublishDate' 'Buttons Buttons';
@@ -38,7 +38,7 @@ export const Author = styled.p`
 
 export const Image = styled.img`
   width: 200px;
-  height: 350px;
+  height: 300px;
   grid-area: Image;
   justify-self: center;
 `;

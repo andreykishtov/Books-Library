@@ -10,11 +10,11 @@ import Modals from './ErrorMessage';
 const BooksWrapper = styled.div`
   margin: 0 auto;
   justify-content: center;
-  width: 1300px;
+  width: 1380px;
   display: grid;
   grid-template-columns: 0fr 0fr 0fr 0fr;
-  grid-gap: 10px;
-  background: #1d1e20;
+  grid-gap: 40px;
+  background: #222325;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 `;
 
