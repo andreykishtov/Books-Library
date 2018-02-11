@@ -9,18 +9,11 @@
  * Main module of the application.
  */
 angular
-  .module('clientAngularjsApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+  .module('clientAngularjsApp', ['ngAnimate', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch'])
+  .config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        template: '<main/>',
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
