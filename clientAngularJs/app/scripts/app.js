@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('clientAngularjsApp', ['ngAnimate', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch'])
+  .module('clientAngularjsApp', ['ngAnimate','angular.filter', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch'])
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
