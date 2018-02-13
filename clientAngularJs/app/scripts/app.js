@@ -9,19 +9,25 @@
  * Main module of the application.
  */
 angular
-  .module('clientAngularjsApp', ['ngAnimate','angular.filter', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch'])
+  .module('clientAngularjsApp', [
+    'ngAnimate',
+    'angular.filter',
+    'ngCookies',
+    'ngResource',
+    'ngRoute',
+    'ngSanitize',
+    'ngTouch'
+  ])
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        template: '<main/>',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        template: '<main/>'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
+      // .when('/about', {
+      //   templateUrl: 'views/about.html',
+      //   controller: 'AboutCtrl',
+      //   controllerAs: 'about'
+      // })
       .otherwise({
         redirectTo: '/'
       });
